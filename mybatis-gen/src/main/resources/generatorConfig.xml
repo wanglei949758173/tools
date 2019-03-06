@@ -5,36 +5,41 @@
 
 <generatorConfiguration>
 
-  <!-- 运行命令:
-  			mybatis-generator:generate -Dmybatis.generator.overwrite=true 
-   -->
-  <context id="DB2Tables" targetRuntime="MyBatis3">
-    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-        connectionURL="jdbc:mysql://localhost:3306/test?useUnicode=true"
-        userId="root"
-        password="jdsn">
-    </jdbcConnection>
+	<!-- 运行命令: mybatis-generator:generate -Dmybatis.generator.overwrite=true -->
 
-    <javaTypeResolver type="mybatis.gen.MyJavaTypeResolver">
-      <property name="forceBigDecimals" value="false" />
-    </javaTypeResolver>
 
-    <javaModelGenerator targetPackage="com.wl.model" targetProject="src/main/java">
-      <property name="enableSubPackages" value="true" />
-      <property name="trimStrings" value="true" />
-    </javaModelGenerator>
+	<properties resource="generatorConfig.properties"></properties>
 
-    <sqlMapGenerator targetPackage="com.wl.mapper"  targetProject="src/main/resources">
-      <property name="enableSubPackages" value="true" />
-    </sqlMapGenerator>
 
-    <javaClientGenerator type="XMLMAPPER" targetPackage="com.wl.mapper"  targetProject="src/main/java">
-      <property name="enableSubPackages" value="true" />
-    </javaClientGenerator>
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		<jdbcConnection driverClass="${jdbc.driver}"
+			connectionURL="${jdbc.url}"
+			userId="${jdbc.user}" password="${jdbc.password}">
+		</jdbcConnection>
 
-    <table tableName="t_user" domainObjectName="User" >
-      
-    </table>
+		<javaTypeResolver type="mybatis.gen.MyJavaTypeResolver">
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
 
-  </context>
+		<javaModelGenerator targetPackage="${domainPackage}"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="${mapperXmlPackage}"
+			targetProject="src/main/resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="${mapperPackage}" targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<table tableName="t_user" domainObjectName="User">
+
+		</table>
+
+	</context>
 </generatorConfiguration>
