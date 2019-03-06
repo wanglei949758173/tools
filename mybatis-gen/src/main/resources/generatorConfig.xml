@@ -15,7 +15,7 @@
         password="jdsn">
     </jdbcConnection>
 
-    <javaTypeResolver >
+    <javaTypeResolver type="mybatis.gen.MyJavaTypeResolver">
       <property name="forceBigDecimals" value="false" />
     </javaTypeResolver>
 
