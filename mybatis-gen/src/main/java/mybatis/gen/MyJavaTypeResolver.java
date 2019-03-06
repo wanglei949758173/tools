@@ -26,5 +26,10 @@ public class MyJavaTypeResolver extends JavaTypeResolverDefaultImpl {
 		super.typeMap.put(Types.TINYINT,
 				new JavaTypeResolverDefaultImpl.JdbcTypeInformation("TINYINT",
 						new FullyQualifiedJavaType(Integer.class.getName())));
+
+		// 将DECIMAL类型默认转换为Double
+		super.typeMap.put(Types.DECIMAL,
+						  new JavaTypeResolverDefaultImpl.JdbcTypeInformation("DECIMAL",
+																			  new FullyQualifiedJavaType(Double.class.getName())));
 	}
 }
